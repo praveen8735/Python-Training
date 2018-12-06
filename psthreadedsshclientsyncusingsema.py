@@ -4,7 +4,7 @@ import threading
 import logging
 from time import sleep
 
-logging.basicConfig(format= '%(asctime)s : %(threadName)s : %(message)s')
+logging.basicConfig(format='%(asctime)s : %(threadName)s : %(message)s')
 target_file = 'sshresponse.log'
 
 
@@ -36,13 +36,16 @@ class ThreadedSSHHandler(CustomSSHClient):
 
 class ThreadedSSHClient:
     """main thread"""
+
     def __init__(self, host_file):
         self.host_file = host_file
         self.__spawn_threads()
 
     def __spawn_threads(self):
         threads = []
-        lock_obj = threading.Lock()   # sync using lock
+
+        threading.BoundedSemaphore
+        lock_obj = threading.Semaphore(3)  # sync using binary semaphore
 
         for host_config in self.__parse_host_file():
             host_config.append(lock_obj)

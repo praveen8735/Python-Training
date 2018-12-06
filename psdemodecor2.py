@@ -22,7 +22,6 @@ def argument_logger(log_file='', file='stdout'):
     return callable_handler
 
 
-@timeit
 @argument_logger()
 def compute(a, b):
     return dict(result=a + b)
